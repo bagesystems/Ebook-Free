@@ -204,6 +204,301 @@
         <div class="result-icon ic1">📣</div>
         <div><h3>Anúncios que Vendem</h3><p>Tráfego pago · 32 páginas</p></div>
       </div>
+      <a href="01_anuncios_que_vendem.pdf" download>Baixar PDF</a>
+    </div>
+    <div class="result-item">
+      <div class="result-left">
+        <div class="result-icon ic2">✍️</div>
+        <div><h3>Copy que Converte</h3><p>Copywriting · 28 páginas</p></div>
+      </div>
+      <a href="02_copy_que_converte.pdf" download>Baixar PDF</a>
+    </div>
+    <div class="result-item">
+      <div class="result-left">
+        <div class="result-icon ic3">🔻</div>
+        <div><h3>Funil Simples</h3><p>Funil de vendas · 24 páginas</p></div>
+      </div>
+      <a href="03_funil_simples.pdf" download>Baixar PDF</a>
+    </div>
+    <div class="result-item">
+      <div class="result-left">
+        <div class="result-icon ic4">📱</div>
+        <div><h3>Redes que Vendem</h3><p>Redes sociais · 30 páginas</p></div>
+      </div>
+      <a href="04_redes_que_vendem.pdf" download>Baixar PDF</a>
+    </div>
+  </div>
+</main>
+
+<footer>Um projeto Gaúcho Visionário · conteúdo gratuito, feito para ser útil.</footer>
+
+<script>
+  // Particle burst on click
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+
+  let particles = [];
+  const colors = ['#C6FF3D','#FF3D81','#3DA9FF','#F3F1FA'];
+
+  function burst(x,y){
+    for(let i=0;i<70;i++){
+      const angle = Math.random()*Math.PI*2;
+      const speed = 2 + Math.random()*6;
+      particles.push({
+        x,y,
+        vx: Math.cos(angle)*speed,
+        vy: Math.sin(angle)*speed,
+        size: 2 + Math.random()*4,
+        color: colors[Math.floor(Math.random()*colors.length)],
+        life: 1
+      });
+    }
+  }
+
+  function tick(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      p.x += p.vx; p.y += p.vy; p.vy += 0.05; p.life -= 0.012;
+      ctx.globalAlpha = Math.max(p.life,0);
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    particles = particles.filter(p=>p.life>0);
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  const btn = document.getElementById('downloadBtn');
+  const results = document.getElementById('results');
+  const btnZone = document.getElementById('btnZone');
+  let unlocked = false;
+
+  btn.addEventListener('click', (e)=>{
+    const r = btn.getBoundingClientRect();
+    burst(r.left + r.width/2, r.top + r.height/2);
+    if(!unlocked){
+      unlocked = true;
+      results.classList.add('show');
+      btnZone.classList.remove('pulsing');
+      btn.textContent = '';
+      btn.innerHTML = 'Pacote liberado ✓ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+      results.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+  });
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baixe os E-books de Marketing Digital — Grátis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0D0821;
+    --bg-2:#150C33;
+    --lime:#C6FF3D;
+    --magenta:#FF3D81;
+    --blue:#3DA9FF;
+    --text:#F3F1FA;
+    --text-dim:#9C93C2;
+    --line:rgba(243,241,250,0.10);
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Inter',sans-serif;
+    min-height:100vh; display:flex; flex-direction:column;
+    overflow-x:hidden; position:relative;
+  }
+  h1,h2,.display{font-family:'Space Grotesk',sans-serif; margin:0;}
+
+  /* ---------- ANIMATED MESH BACKGROUND ---------- */
+  .mesh{
+    position:fixed; inset:-10%; z-index:0; pointer-events:none; filter:blur(70px); opacity:0.55;
+  }
+  .mesh span{
+    position:absolute; border-radius:50%;
+  }
+  .m1{width:520px; height:520px; background:var(--magenta); top:-8%; left:-8%; animation:float1 16s ease-in-out infinite;}
+  .m2{width:460px; height:460px; background:var(--blue); bottom:-10%; right:-6%; animation:float2 18s ease-in-out infinite;}
+  .m3{width:380px; height:380px; background:var(--lime); top:40%; left:60%; animation:float3 20s ease-in-out infinite;}
+  @keyframes float1{0%,100%{transform:translate(0,0);} 50%{transform:translate(80px,60px);}}
+  @keyframes float2{0%,100%{transform:translate(0,0);} 50%{transform:translate(-70px,-50px);}}
+  @keyframes float3{0%,100%{transform:translate(0,0);} 50%{transform:translate(-50px,70px);}}
+
+  .grain{
+    position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.04; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  canvas#particles{position:fixed; inset:0; z-index:1; pointer-events:none;}
+
+  nav{
+    position:relative; z-index:5; display:flex; justify-content:space-between; align-items:center;
+    padding:26px 40px;
+  }
+  .logo{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.1rem; letter-spacing:0.01em;}
+  .logo span{color:var(--lime);}
+
+  main{
+    position:relative; z-index:5; flex:1;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:40px 24px 90px;
+  }
+  .eyebrow{
+    font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.16em;
+    color:var(--lime); margin-bottom:22px; display:inline-flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before, .eyebrow::after{content:''; width:26px; height:1px; background:var(--lime); opacity:0.6;}
+
+  h1{
+    font-size:clamp(2.4rem, 6vw, 4.6rem); line-height:1.05; max-width:900px;
+    font-weight:700;
+  }
+  h1 .accent{color:var(--lime);}
+
+  .sub{
+    margin-top:26px; color:var(--text-dim); font-size:1.15rem; line-height:1.6; max-width:560px;
+  }
+
+  .pack-pills{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:30px; max-width:600px;
+  }
+  .pill{
+    font-size:0.8rem; font-weight:600; padding:9px 16px; border-radius:100px;
+    border:1px solid var(--line); color:var(--text-dim); background:rgba(255,255,255,0.02);
+  }
+
+  /* ---------- SIGNATURE: ENERGY BUTTON ---------- */
+  .btn-zone{
+    position:relative; margin-top:56px; display:flex; flex-direction:column; align-items:center;
+  }
+  .ring{
+    position:absolute; border-radius:100px; border:1px solid var(--lime); opacity:0;
+    top:50%; left:50%; transform:translate(-50%,-50%);
+    pointer-events:none;
+  }
+  .btn-zone.pulsing .ring{ animation: ringPulse 2.2s ease-out infinite; }
+  .r1{width:220px; height:70px; animation-delay:0s;}
+  .r2{width:220px; height:70px; animation-delay:0.7s;}
+  .r3{width:220px; height:70px; animation-delay:1.4s;}
+  @keyframes ringPulse{
+    0%{ width:220px; height:70px; opacity:0.55; }
+    100%{ width:420px; height:150px; opacity:0; }
+  }
+
+  #downloadBtn{
+    position:relative; z-index:2;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.15rem; font-weight:600;
+    padding:22px 48px; border-radius:100px; border:none; cursor:pointer;
+    background:var(--lime); color:#0D0821;
+    box-shadow:0 0 0 0 rgba(198,255,61,0.5), 0 20px 50px rgba(198,255,61,0.18);
+    transition:transform .25s cubic-bezier(.2,.9,.3,1), box-shadow .25s ease;
+    display:inline-flex; align-items:center; gap:12px;
+  }
+  #downloadBtn svg{width:20px; height:20px; transition:transform .3s ease;}
+  #downloadBtn:hover{transform:translateY(-4px) scale(1.03); box-shadow:0 24px 60px rgba(198,255,61,0.3);}
+  #downloadBtn:hover svg{transform:translateY(2px);}
+  #downloadBtn:active{transform:translateY(-1px) scale(0.99);}
+  #downloadBtn:focus-visible{outline:3px solid var(--blue); outline-offset:4px;}
+
+  .btn-caption{margin-top:18px; font-size:0.82rem; color:var(--text-dim);}
+
+  /* ---------- RESULT: LISTA DE DOWNLOADS ---------- */
+  .results{
+    margin-top:14px; max-width:560px; width:100%;
+    display:grid; gap:12px;
+    max-height:0; overflow:hidden; opacity:0;
+    transition:max-height .6s ease, opacity .5s ease, margin-top .5s ease;
+  }
+  .results.show{ max-height:600px; opacity:1; margin-top:44px; }
+  .result-item{
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+    padding:16px 20px; border-radius:14px; border:1px solid var(--line);
+    background:rgba(255,255,255,0.03);
+    opacity:0; transform:translateY(14px);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  .results.show .result-item{opacity:1; transform:translateY(0);}
+  .results.show .result-item:nth-child(1){transition-delay:.05s;}
+  .results.show .result-item:nth-child(2){transition-delay:.15s;}
+  .results.show .result-item:nth-child(3){transition-delay:.25s;}
+  .results.show .result-item:nth-child(4){transition-delay:.35s;}
+  .result-left{display:flex; align-items:center; gap:14px; text-align:left;}
+  .result-icon{
+    width:40px; height:40px; border-radius:10px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:1.1rem;
+  }
+  .ic1{background:rgba(198,255,61,0.15);} .ic2{background:rgba(255,61,129,0.15);}
+  .ic3{background:rgba(61,169,255,0.15);} .ic4{background:rgba(198,255,61,0.15);}
+  .result-item h3{font-size:0.95rem; font-weight:600; font-family:'Inter',sans-serif;}
+  .result-item p{margin:2px 0 0; font-size:0.78rem; color:var(--text-dim);}
+  .result-item a{
+    font-size:0.82rem; font-weight:700; color:var(--bg); background:var(--text);
+    padding:9px 16px; border-radius:100px; text-decoration:none; white-space:nowrap;
+    transition:background .2s ease;
+  }
+  .result-item a:hover{background:var(--lime);}
+
+  footer{
+    position:relative; z-index:5; text-align:center; padding:26px; color:var(--text-dim); font-size:0.8rem;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="mesh"><span class="m1"></span><span class="m2"></span><span class="m3"></span></div>
+<div class="grain"></div>
+<canvas id="particles"></canvas>
+
+<nav>
+  <div class="logo">Gaúcho <span>Visionário</span></div>
+</nav>
+
+<main>
+  <div class="eyebrow">Pacote gratuito</div>
+  <h1>E-books de <span class="accent">marketing digital</span>. Um clique para ter todos.</h1>
+  <p class="sub">Tráfego pago, copywriting, funil de vendas e redes sociais — direto ao ponto, sem formulário, sem enrolação.</p>
+
+  <div class="pack-pills">
+    <span class="pill">📣 Tráfego pago</span>
+    <span class="pill">✍️ Copywriting</span>
+    <span class="pill">🔻 Funil de vendas</span>
+    <span class="pill">📱 Redes sociais</span>
+  </div>
+
+  <div class="btn-zone pulsing" id="btnZone">
+    <span class="ring r1"></span>
+    <span class="ring r2"></span>
+    <span class="ring r3"></span>
+    <button id="downloadBtn">
+      Baixar os e-books grátis
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M6 12l6 6 6-6"/><path d="M5 21h14"/></svg>
+    </button>
+  </div>
+  <p class="btn-caption">Download direto · sem e-mail</p>
+
+  <div class="results" id="results">
+    <div class="result-item">
+      <div class="result-left">
+        <div class="result-icon ic1">📣</div>
+        <div><h3>Anúncios que Vendem</h3><p>Tráfego pago · 32 páginas</p></div>
+      </div>
       <a href="#" download>Baixar PDF</a>
     </div>
     <div class="result-item">
